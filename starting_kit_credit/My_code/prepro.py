@@ -15,6 +15,7 @@ from sklearn.decomposition import PCA
 class Preprocessor(BaseEstimator):
     def __init__(self):
         self.transformer = PCA(n_components=2)
+        #je pense qu'il faut enchainer les self.transformer ici pour mettre plus de méthodes
 
     def fit(self, X, y=None):
         return self.transformer.fit(X, y)
@@ -34,7 +35,7 @@ if __name__=="__main__":
         input_dir = argv[1]
         output_dir = argv[2];
     
-    basename = 'credit' #peut-être mettre une majuscule ici ?
+    basename = 'credit'
     D = DataManager(basename, input_dir) # Load data
     print("*** Original data ***")
     print D
