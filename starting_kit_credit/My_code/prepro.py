@@ -28,7 +28,7 @@ class Preprocessor(BaseEstimator):
 if __name__=="__main__":
     # We can use this to run this file as a script and test the Preprocessor
     if len(argv)==1: # Use the default input and output directories if no arguments are provided
-        input_dir = "../sample_data"
+        input_dir = "../public_data"
         output_dir = "../results" # Create this directory if it does not exist
     else:
         input_dir = argv[1]
