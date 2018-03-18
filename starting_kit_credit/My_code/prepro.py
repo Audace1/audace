@@ -11,11 +11,24 @@ from data_manager import DataManager  # such as DataManager
 
 from sklearn.base import BaseEstimator
 from sklearn.decomposition import PCA
+from sklearn.cluster import FeatureAgglomeration
+from sklearn.feature_selection import VarianceThreshold
+
+from sklearn.pipeline import Pipeline
 
 class Preprocessor(BaseEstimator):
     def __init__(self):
-        self.transformer = PCA(n_components=2)
-        #je pense qu'il faut enchainer les self.transformer ici pour mettre plus de méthodes
+        estimators = [('reduce_dim', PCA(n_components=55)), ('var_tresh', VarianceThreshold(threshold=(.8 * (1 - .8))))]
+        pipe = Pipeline(estimators)
+        self.transformer = pipe
+        
+        
+        #comment l'utiliser : tu met les méthodes que tu veux employer dans 
+        #l'ordre dans lequel tu vux les employer dans la liste estimator et c'est bon
+        
+        
+        #self.transformer = PCA(n_components=2)
+        #self.transformer = FeatureAgglomeration(n_clusters=32)
 
     def fit(self, X, y=None):
         return self.transformer.fit(X, y)
