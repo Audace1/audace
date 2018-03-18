@@ -13,12 +13,13 @@ from sklearn.base import BaseEstimator
 from sklearn.decomposition import PCA
 from sklearn.cluster import FeatureAgglomeration
 from sklearn.feature_selection import VarianceThreshold
+from sklearn.cluster import FeatureAgglomeration
 
 from sklearn.pipeline import Pipeline
 
 class Preprocessor(BaseEstimator):
     def __init__(self):
-        estimators = [('reduce_dim', PCA(n_components=55)), ('var_tresh', VarianceThreshold(threshold=(.8 * (1 - .8))))]
+        estimators = [('reduce_dim', PCA(n_components=20)), ('cluster',FeatureAgglomeration(n_clusters = 2) )]
         pipe = Pipeline(estimators)
         self.transformer = pipe
         
